@@ -7,8 +7,27 @@ namespace CoffeeShopConsoleApp
     /// <summary>
     /// A class that is used for coffe orders
     /// </summary>
-    public class Coffee
+    public abstract class Coffee
+    
+
     {
+        public Coffee(int discount, string name)
+        {
+            Name = name;
+            Discount = discount;
+
+            if (discount>5)
+            {
+                throw new Exception("The discount can not be more than 5 Krn!");
+            }
+        }
+
+
+        public int Discount { get; set; }
+
+        public string Name { get; set; }
+
+
         /// <summary>
         /// returns the price of the coffee
         /// It's possible to override this method, beacuse it is virtual 
@@ -16,8 +35,12 @@ namespace CoffeeShopConsoleApp
         /// <returns>20 dkr</returns>
         public virtual int price()
         {
-            return 20;
+            return 20-Discount;
         }
+
+
+        public abstract string Strength();
+        
 
     }
 }
